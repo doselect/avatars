@@ -10,9 +10,17 @@ command -v inkscape >/dev/null 2>&1 || {
 DIST_FOLDER_NAME=dist
 mkdir -p $DIST_FOLDER_NAME
 
-# Rasterise all images in `developers`
+# Rasterize all images in `developers`
 mkdir -p "$DIST_FOLDER_NAME/developers"
 for img in developers/*
+do
+  echo "Rasterizing $img"
+  inkscape -z -e "$DIST_FOLDER_NAME/${img%.*}.png" -w 200 -h 200 $img
+done
+
+#Rasterize all images in `teams`
+mkdir -p "$DIST_FOLDER_NAME/teams"
+for img in teams/*
 do
   echo "Rasterizing $img"
   inkscape -z -e "$DIST_FOLDER_NAME/${img%.*}.png" -w 200 -h 200 $img
